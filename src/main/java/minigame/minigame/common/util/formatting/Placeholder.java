@@ -1,6 +1,6 @@
-package minigame.minigame.util.formatting;
+package minigame.minigame.common.util.formatting;
 
-import minigame.minigame.game.Game;
+import minigame.minigame.bukkit.game.Game;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;

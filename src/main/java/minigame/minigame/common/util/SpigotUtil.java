@@ -1,6 +1,4 @@
-package minigame.minigame.util;
-
-import org.bukkit.Location;
+package minigame.minigame.common.util;
 
 public class SpigotUtil {
 

@@ -1,6 +1,6 @@
-package minigame.minigame.commands;
+package minigame.minigame.bukkit.commands;
 
-import minigame.minigame.cmd.Command;
+import minigame.minigame.common.commands.Command;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;

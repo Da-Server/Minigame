@@ -1,9 +1,9 @@
-package minigame.minigame.game.events;
+package minigame.minigame.bukkit.game.events;
 
-import minigame.minigame.configs.Config;
-import minigame.minigame.game.Game;
-import minigame.minigame.position.PositionManager;
-import minigame.minigame.util.formatting.Placeholder;
+import minigame.minigame.bukkit.configs.Config;
+import minigame.minigame.bukkit.game.Game;
+import minigame.minigame.bukkit.position.PositionManager;
+import minigame.minigame.common.util.formatting.Placeholder;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

@@ -1,8 +1,11 @@
-package minigame.minigame.configs;
+package minigame.minigame.bukkit.configs;
 
-import minigame.minigame.util.Color;
+import minigame.minigame.common.util.Color;
 import org.bukkit.Sound;
 
+/**
+ * DataModel class for holding data contained within the config file.
+ */
 public class Config {
 
     public static final String GAME_RUNNING_MESSAGE = Color.colorize("&cYou can not join while a game is running!");

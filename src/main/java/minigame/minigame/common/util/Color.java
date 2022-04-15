@@ -1,4 +1,4 @@
-package minigame.minigame.util;
+package minigame.minigame.common.util;
 
 import org.bukkit.ChatColor;
 
