@@ -6,8 +6,8 @@ import minigame.minigame.Minigame;
 import minigame.minigame.bukkit.configs.Config;
 import minigame.minigame.common.util.SpigotUtil;
 import minigame.minigame.common.util.formatting.Placeholder;
-import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 

@@ -3,6 +3,9 @@ package minigame.minigame.bukkit.item;
 import minigame.minigame.bukkit.item.components.AbilityType;
 import org.bukkit.Material;
 
+/**
+ * An abstract item class used for building items
+ */
 public abstract class CItem {
 
     public abstract Material getMaterial();
