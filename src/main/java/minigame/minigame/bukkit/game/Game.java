@@ -13,6 +13,9 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
 
+/**
+ * The game manager, responsible for keeping track of what is happening within the game.
+ */
 public class Game {
 
     @Setter
@@ -25,10 +28,17 @@ public class Game {
 
     private static ArrayList<Player> players = new ArrayList<>();
 
+    /**
+     * Check if the game is currently active
+     * @return returns true if this game is active.
+     */
     public static boolean isRunning() {
         return isRunning;
     }
 
+    /**
+     * Quick event for when the game starts.
+     */
     public static void onStart() {
         players.addAll(Bukkit.getOnlinePlayers());
         countDown(10).runTaskTimer(Minigame.instance, 0, 20);
