@@ -18,9 +18,10 @@ public class Gui implements InventoryHolder {
      */
     public static final int MAX_SIZE = 54;
 
-    @Getter
     private Inventory inv;
+    @Getter
     private int size = 0;
+    @Getter
     private String name = "";
 
     /**
@@ -30,6 +31,7 @@ public class Gui implements InventoryHolder {
      */
     public Gui(String name, int size) {
         inv = Bukkit.createInventory(this, size, Color.colorize(name));
+        this.name = Color.colorize(name);
         this.size = size;
     }
 
@@ -57,6 +59,15 @@ public class Gui implements InventoryHolder {
                 inv.setItem(j, i);
             }
         }
+    }
+
+    /**
+     *
+     * @param i the slot to set
+     * @param item the item to set it to
+     */
+    public void setItem(int i, ItemStack item) {
+        inv.setItem(i, item);
     }
 
 

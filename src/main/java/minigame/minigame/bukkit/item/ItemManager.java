@@ -1,9 +1,7 @@
 package minigame.minigame.bukkit.item;
 
 import minigame.minigame.common.util.Color;
-import minigame.minigame.common.util.SpigotUtil;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -18,10 +16,17 @@ import java.util.HashMap;
  */
 public class ItemManager {
 
+
     private static final HashMap<CItem, ItemStack> itemMap = new HashMap<>();
     private static final HashMap<String, CItem> idMap = new HashMap<>();
 
 
+    /**
+     * Builds and item from a CItem
+     * @param item the CItem used for building
+     * @see CItem
+     * @return returns and ItemStack
+     */
     public static ItemStack buildItem(CItem item) {
         ItemStack i = new ItemStack(item.getMaterial());
         ItemMeta meta = i.getItemMeta();
@@ -68,6 +73,22 @@ public class ItemManager {
 
 
         return i;
+    }
+
+    /**
+     * gets the item map and
+     * @return returns the item map
+     */
+    public static HashMap <CItem, ItemStack> getItemMap() {
+        return itemMap;
+    }
+
+    /**
+     * gets the id map and
+     * @return returns the id map
+     */
+    public static HashMap <String, CItem> getIdMap() {
+        return idMap;
     }
 
 }

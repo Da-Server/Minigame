@@ -1,0 +1,16 @@
+minigame.minigame
+minigame.minigame.bukkit.commands
+minigame.minigame.bukkit.configs
+minigame.minigame.bukkit.game
+minigame.minigame.bukkit.game.custom
+minigame.minigame.bukkit.game.events
+minigame.minigame.bukkit.gui
+minigame.minigame.bukkit.gui.components
+minigame.minigame.bukkit.item
+minigame.minigame.bukkit.item.components
+minigame.minigame.bukkit.position
+minigame.minigame.common.commands
+minigame.minigame.common.players
+minigame.minigame.common.points
+minigame.minigame.common.util
+minigame.minigame.common.util.formatting

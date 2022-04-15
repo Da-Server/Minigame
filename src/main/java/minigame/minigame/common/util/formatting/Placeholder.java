@@ -16,6 +16,43 @@ public class Placeholder {
     private static Map <String, String> properties = new HashMap<String, String>();
     private static final Pattern PLACEHOLDER_PATTERN = Pattern.compile("(?<escape>\\\\)?\\$\\{(?<name>[^{}]+)\\}");
 
+
+    /**
+     *
+     * @param player the player to use for player based placeholders
+     * @param str the input string that will be replaced
+     * @return outputs the string with placeholders
+     */
+    public static String placeholder(Player player, String str) {
+
+        properties.put("PLAYER_COUNT", Game.getPlayerCount() + "");
+        properties.put("PLAYER_NAME", player.getName());
+        properties.put("GRADIANT_INT", "&6");
+        Matcher matcher = PLACEHOLDER_PATTERN.matcher(str);
+
+        StringBuffer buffer = new StringBuffer();
+
+        while (matcher.find()) {
+            String replacement = matcher.group("escape") != null ?
+                    matcher.group().substring(1) :
+                    properties.containsKey(matcher.group("name")) ?
+                            placeholder(player, properties.get(matcher.group("name")) + "") :
+                            matcher.group();
+            matcher.appendReplacement(buffer, Matcher.quoteReplacement(replacement));
+
+        }
+
+        matcher.appendTail(buffer);
+
+        return buffer.toString();
+
+    }
+    /**
+     * @param i the value used for number based placeholders
+     * @param player the player to use for player based placeholders
+     * @param str the input string that will be replaced
+     * @return outputs the string with placeholders
+     */
     public static String placeholder(int i, Player player, String str) {
 
         properties.put("PLAYER_COUNT", Game.getPlayerCount() + "");
@@ -33,6 +70,41 @@ public class Placeholder {
                     matcher.group().substring(1) :
                     properties.containsKey(matcher.group("name")) ?
                             placeholder(i, player, properties.get(matcher.group("name")) + "") :
+                            matcher.group();
+            matcher.appendReplacement(buffer, Matcher.quoteReplacement(replacement));
+
+        }
+
+        matcher.appendTail(buffer);
+
+        return buffer.toString();
+
+    }
+
+    /**
+     * @param player the player to use for player based placeholders
+     * @param player2 the player used for multi player placeholders
+     * @param str the input string that will be replaced
+     * @return outputs the string with placeholders
+     */
+    public static String placeholder(Player player, Player player2, String str) {
+
+        properties.put("PLAYER_COUNT", Game.getPlayerCount() + "");
+        properties.put("PLAYER_NAME", player.getName());
+        properties.put("GRADIANT_INT", "&6");
+        properties.put("VICTIM", player.getName());
+        properties.put("KILLER", player2.getName());
+
+
+        Matcher matcher = PLACEHOLDER_PATTERN.matcher(str);
+
+        StringBuffer buffer = new StringBuffer();
+
+        while (matcher.find()) {
+            String replacement = matcher.group("escape") != null ?
+                    matcher.group().substring(1) :
+                    properties.containsKey(matcher.group("name")) ?
+                            placeholder(player, player2, properties.get(matcher.group("name")) + "") :
                             matcher.group();
             matcher.appendReplacement(buffer, Matcher.quoteReplacement(replacement));
 

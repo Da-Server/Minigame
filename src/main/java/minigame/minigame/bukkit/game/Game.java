@@ -41,7 +41,7 @@ public class Game {
      */
     public static void onStart() {
         players.addAll(Bukkit.getOnlinePlayers());
-        countDown(10).runTaskTimer(Minigame.instance, 0, 20);
+        countDown(10).runTaskTimer(Minigame.getInstance(), 0, 20);
 
     }
     public static void start() {

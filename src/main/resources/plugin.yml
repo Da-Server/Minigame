@@ -2,6 +2,7 @@ name: Minigame
 version: '${project.version}'
 main: minigame.minigame.Minigame
 authors: [ Wyvern ]
+depend: [ProtocolLib]
 commands:
   forcestart:
     permission: "minigame.forcestart"

@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 import java.util.*;
 
 /**
- * A Manager for player statistics & Players
+ * A Manager for player statistics and Players
  */
 public class PlayerManager {
 

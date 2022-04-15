@@ -15,6 +15,8 @@ public class Config {
     public static final String FORCE_START_MESSAGE = Color.colorize("&cThe Game Has been Force Started!");
     public static final String FORCE_END_MESSAGE = Color.colorize("&cThe Game Has been Force Ended!");
 
+    public static final String PLAYER_DEATH_MESSAGE = Color.colorize("&c${KILLER} Has Killed ${VICTIM}");
+
 
 
     public static final String COUNT_DOWN_TITLE = "${COUNT_DOWN_NUMBER}";
