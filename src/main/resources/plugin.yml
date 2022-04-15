@@ -2,3 +2,15 @@ name: Minigame
 version: '${project.version}'
 main: minigame.minigame.Minigame
 authors: [ Wyvern ]
+commands:
+  forcestart:
+    permission: "minigame.forcestart"
+  forceend:
+    permission: "minigame.forcend"
+
+
+permissions:
+  minigame.forcestart:
+    default: op
+  minigame.forceend:
+    default: op

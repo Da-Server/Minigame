@@ -1,9 +1,9 @@
-package minigame.minigame.game.events;
+package minigame.minigame.bukkit.game.events;
 
-import minigame.minigame.configs.Config;
-import minigame.minigame.game.Game;
-import minigame.minigame.position.PositionManager;
-import minigame.minigame.util.formatting.Placeholder;
+import minigame.minigame.bukkit.configs.Config;
+import minigame.minigame.bukkit.game.Game;
+import minigame.minigame.bukkit.position.PositionManager;
+import minigame.minigame.common.util.formatting.Placeholder;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -16,14 +16,14 @@ public class PlayerJoinListener implements Listener {
     void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
 
-        player.teleport(PositionManager.PRE_GAME);
+        //player.teleport(PositionManager.PRE_GAME);
 
         if (Game.isRunning())
             player.kickPlayer(Config.GAME_RUNNING_MESSAGE);
 
         Game.setPlayerCount(Bukkit.getOnlinePlayers().size());
 
-        event.setJoinMessage(Placeholder.placeholder(player, Config.JOIN_MESSAGE));
+        event.setJoinMessage(Placeholder.placeholder(0, player, Config.JOIN_MESSAGE));
 
         for(Player onlinePlayer : Bukkit.getOnlinePlayers())
             onlinePlayer.playSound(onlinePlayer.getLocation(), Config.JOIN_SOUND, 2, 0.1f);

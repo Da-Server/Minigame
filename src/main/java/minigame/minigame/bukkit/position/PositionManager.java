@@ -1,4 +1,4 @@
-package minigame.minigame.position;
+package minigame.minigame.bukkit.position;
 
 import minigame.minigame.Minigame;
 import org.bukkit.Bukkit;

@@ -1,13 +1,11 @@
-package minigame.minigame.common.custom;
+package minigame.minigame.common.points;
 
 import lombok.Getter;
-import lombok.Setter;
-import minigame.minigame.common.annotation.PlayerPoints;
 import org.bukkit.entity.Player;
 
 import java.util.UUID;
 
-public class Point {
+public class PlayerPoint {
 
     @Getter
     private int value = 0;
@@ -15,7 +13,7 @@ public class Point {
     @Getter
     private UUID player = null;
 
-    public Point(int value, Player player) {
+    public PlayerPoint(int value, Player player) {
         this.value = value;
         this.player = player.getUniqueId();
     }
@@ -41,9 +39,6 @@ public class Point {
     public void reset() {
         value = 0;
     }
-
-
-
 
 
 }
