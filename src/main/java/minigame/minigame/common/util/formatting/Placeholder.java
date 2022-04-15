@@ -8,6 +8,10 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * A System to replace parts of a string with a certain value
+ *
+ */
 public class Placeholder {
     private static Map <String, String> properties = new HashMap<String, String>();
     private static final Pattern PLACEHOLDER_PATTERN = Pattern.compile("(?<escape>\\\\)?\\$\\{(?<name>[^{}]+)\\}");

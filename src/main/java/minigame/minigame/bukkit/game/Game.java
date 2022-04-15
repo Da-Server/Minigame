@@ -66,8 +66,7 @@ public class Game {
 
                 for(Player p : Bukkit.getOnlinePlayers()) {
                     Bukkit.broadcastMessage(Placeholder.placeholder(current[0], p, Config.COUNT_DOWN_CHAT));
-                    SpigotUtil util  = new SpigotUtil();
-                    util.sendTitle(p, Placeholder.placeholder(current[0], p, Config.COUNT_DOWN_TITLE), 1,1,1, ChatColor.GOLD);
+                    SpigotUtil.sendTitle(p, Placeholder.placeholder(current[0], p, Config.COUNT_DOWN_TITLE), 1,1,1, ChatColor.GOLD);
                 }
                 current[0]++;
             }

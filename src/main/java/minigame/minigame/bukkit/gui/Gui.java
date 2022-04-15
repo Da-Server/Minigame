@@ -7,6 +7,10 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 
+/**
+ * A Custom InventoryHolder for gui's
+ * TODO: Add a gui Manager
+ */
 public class Gui implements InventoryHolder {
 
     /**

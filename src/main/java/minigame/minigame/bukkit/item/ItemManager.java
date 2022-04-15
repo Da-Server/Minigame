@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
+/**
+ * A Manager/Builder for custom items
+ */
 public class ItemManager {
 
     private static final HashMap<CItem, ItemStack> itemMap = new HashMap<>();

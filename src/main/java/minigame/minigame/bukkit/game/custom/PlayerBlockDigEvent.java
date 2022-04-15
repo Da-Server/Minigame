@@ -7,6 +7,10 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
+/**
+ * A Custom event handled by BlockHandler class
+ * Gets Called While a player is diggin
+ */
 public class PlayerBlockDigEvent extends Event implements Cancellable {
 
     //getting the player

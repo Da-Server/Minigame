@@ -11,6 +11,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.lang.reflect.Field;
 
+/**
+ * A Handler for block events
+ */
 public class BlockHandler {
     /**
      * Removed the player from the handler

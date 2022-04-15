@@ -17,7 +17,7 @@ public class SpigotUtil {
      * @param fadeOutTime The time the title takes to fade out
      * @param color The color of the title
      */
-    public void sendTitle(Player player, String text, int fadeInTime, int showTime, int fadeOutTime, ChatColor color)
+    public static void sendTitle(Player player, String text, int fadeInTime, int showTime, int fadeOutTime, ChatColor color)
     {
         try
         {
@@ -35,7 +35,7 @@ public class SpigotUtil {
         }
     }
 
-    private void sendPacket(Player player, Object packet)
+    private static void sendPacket(Player player, Object packet)
     {
         try
         {
@@ -54,7 +54,7 @@ public class SpigotUtil {
      * @param name Name of the class
      * @return Class
      */
-    private Class<?> getNMSClass(String name)
+    private static Class<?> getNMSClass(String name)
     {
         try
         {

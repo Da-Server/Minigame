@@ -5,6 +5,9 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+/**
+ * An Enum That holds ItemStacks
+ */
 public enum MenuGlass {
 
     /**

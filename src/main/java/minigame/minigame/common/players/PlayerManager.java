@@ -5,6 +5,9 @@ import org.bukkit.entity.Player;
 
 import java.util.*;
 
+/**
+ * A Manager for player statistics & Players
+ */
 public class PlayerManager {
 
     private final List <Player> players = new ArrayList<>();
