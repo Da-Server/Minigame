@@ -11,7 +11,7 @@ public class Color {
 
 
     /**
-     * Converts a string with '&' into a spigot readable string
+     * Converts a string with 'And Symbol' into a spigot readable string
      * @param str the input to be changed
      * @return returns the translated input
      */
