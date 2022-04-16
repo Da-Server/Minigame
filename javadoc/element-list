@@ -17,6 +17,7 @@ minigame.minigame.bukkit.item
 minigame.minigame.bukkit.item.components
 minigame.minigame.bukkit.position
 minigame.minigame.common.commands
+minigame.minigame.common.database
 minigame.minigame.common.players
 minigame.minigame.common.points
 minigame.minigame.common.util

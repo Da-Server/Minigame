@@ -5,7 +5,6 @@ import com.comphenix.protocol.ProtocolManager;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import minigame.minigame.bukkit.position.PositionManager;
-import minigame.minigame.common.commands.Command;
 import minigame.minigame.common.players.PlayerManager;
 import minigame.minigame.common.util.Log;
 import minigame.minigame.common.util.XMLReader;
@@ -29,21 +28,21 @@ public final class Minigame extends JavaPlugin {
     @Getter private String version;
     @Getter private String branch;
     @Getter private String MC_VERSION;
-    @Getter private String name;
+    @Getter private String n;
 
     @Getter private PositionManager positionManager;
     @Getter private PlayerManager playerManager;
     @Getter private ProtocolManager protocolManager;
 
-    public static World world = Bukkit.getWorld("World");
+    @Getter private World world;
 
     @SneakyThrows
     @Override
     public void onEnable() {
-        initManagers();
         register();
         loadProperties();
-        Log.log("Plugin Successfully enabled! version: " + name + "-" + version + "-" + MC_VERSION);
+        initManagers();
+        Log.log("Plugin Successfully enabled! version: " + n + "-" + version + "-" + MC_VERSION);
     }
 
     @Override
@@ -74,7 +73,9 @@ public final class Minigame extends JavaPlugin {
         version = pomReader.readString("version");
         branch = pomReader.readString("branch");
         MC_VERSION = pomReader.readString("mc.version");
-        name = pomReader.readString("name");
+        n = pomReader.readString("name");
+
+        world = Bukkit.getServer().getWorld("world");
     }
 
     /**
@@ -83,7 +84,6 @@ public final class Minigame extends JavaPlugin {
      * @throws IllegalAccessException Reelections were unable to access the object.
      *
      * @see Listener
-     * @see Command
      */
     private void register() throws InstantiationException, IllegalAccessException {
         for(Class<?extends Listener> c : reflections.getSubTypesOf(Listener.class)) {

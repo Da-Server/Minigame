@@ -23,17 +23,23 @@ public class PlayerJoinListener implements Listener {
     @EventHandler
     void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-
+        Game.setPlayerCount(Bukkit.getOnlinePlayers().size());
+        Minigame.getInstance().getPlayerManager().add(player);
         player.teleport(Minigame.getInstance().getPositionManager().getPre());
 
-        if (Game.isRunning())
+        if (Game.isRunning()) {
             player.kickPlayer(Config.GAME_RUNNING_MESSAGE);
+            event.setJoinMessage("");
+        } else if(Game.getPlayerCount() > 8) {
 
-        Game.setPlayerCount(Bukkit.getOnlinePlayers().size());
+        }
+
+
+
 
         event.setJoinMessage(Placeholder.placeholder(0, player, Config.JOIN_MESSAGE));
 
-        Minigame.getInstance().getPlayerManager().add(player);
+
 
         for(Player onlinePlayer : Bukkit.getOnlinePlayers())
             onlinePlayer.playSound(onlinePlayer.getLocation(), Config.JOIN_SOUND, 2, 0.1f);

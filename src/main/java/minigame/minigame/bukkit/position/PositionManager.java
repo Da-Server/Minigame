@@ -18,7 +18,8 @@ public class PositionManager {
 
 
 
-    private final Location pre = new Location(Minigame.world, 0, 200, 0);
+
+    private Location pre;
 
     /**
      * Initialise the position manager
@@ -27,6 +28,8 @@ public class PositionManager {
         locations.add(getLoc(0,100,0));
         locations.add(getLoc(1,100,0));
         locations.add(getLoc(0,100,1));
+
+        pre = new Location(Minigame.getInstance().getWorld(), 0, 200, 0);
     }
 
     /**
@@ -60,7 +63,7 @@ public class PositionManager {
      * @see Location
      */
     private static Location getLoc(int x, int y, int z) {
-        return new Location(Minigame.world, x,y,z);
+        return new Location(Minigame.getInstance().getWorld(), x,y,z);
     }
 
     /**

@@ -14,14 +14,18 @@ public class Config {
     public static final String COUNT_DOWN_CHAT = Color.colorize("&6${COUNT_DOWN_NUMBER} Seconds &7Left!");
     public static final String FORCE_START_MESSAGE = Color.colorize("&cThe Game Has been Force Started!");
     public static final String FORCE_END_MESSAGE = Color.colorize("&cThe Game Has been Force Ended!");
+    public static final String GAME_FULL_MESSAGE = Color.colorize("&6GAME FULL!");
 
     public static final String PLAYER_DEATH_MESSAGE = Color.colorize("&c${KILLER} Has Killed ${VICTIM}");
 
 
 
     public static final String COUNT_DOWN_TITLE = "${COUNT_DOWN_NUMBER}";
+    public static final String GAME_START_TITLE = "THE GAME BEINGS!";
 
     public static final Sound JOIN_SOUND = Sound.CHICKEN_EGG_POP;
+    public static final Sound COUNT_SOUND = Sound.NOTE_STICKS;
+    public static final Sound START_SOUND = Sound.NOTE_PLING;
 
 
 }

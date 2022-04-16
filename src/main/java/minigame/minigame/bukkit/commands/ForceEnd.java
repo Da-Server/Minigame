@@ -15,7 +15,7 @@ public class ForceEnd implements CommandExecutor {
         if(commandSender instanceof Player) {
             Player p = (Player)commandSender;
             if(p.isOp() || p.hasPermission(PermissionManager.FORCE_END)) {
-                Game.end();
+                Game.onEnd();
                 Bukkit.broadcastMessage(Config.FORCE_END_MESSAGE);
             }
         }

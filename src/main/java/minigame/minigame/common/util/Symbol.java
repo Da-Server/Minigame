@@ -5,6 +5,7 @@ public enum Symbol {
     //Some of these symbols will be added in a texture pack!
     //All of these symbols have a purpose, whether they aren't used yet\\\
     STAR("★"),
+    HEART("❤"),
     SHEILD("\uD83D\uDEE1"),
     LIGHTNING("⚡"),
     SKELETON("☠"),
@@ -17,6 +18,8 @@ public enum Symbol {
     COIN("⑩"),
     FLAME("\uD83D\uDD25"),
     WAVE("\uD83C\uDF0A"),
+    PICKAXE("⛏"),
+    HAMMER_AND_PICK("⚒"),
     ANCHOR("⚓"),
     SCALING("⚖"),
     //Used for when we add storms
@@ -37,6 +40,9 @@ public enum Symbol {
     REGISTERED("®"),
     TRADEMARK("™"),
     SOME_WIERD_ASS_CHINESE_SYMBOL("㊣"),
+    SOME_WIERD_ASS_CHINESE_SYMBOL2("あ"),
+    SOME_WIERD_ASS_CHINESE_SYMBOL3("㊚"),
+    SOME_WIERD_ASS_CHINESE_SYMBOL4("㊛"),
     ARROW("➹"),
     INVERTED_STAR("✪"),
     INFINITY("∞"),

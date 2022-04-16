@@ -9,7 +9,7 @@ import java.util.Random;
  * A Class that holds methods for custom
  * noise generation
  */
-public class MathNoise3D {
+public class BasicNoise3D {
 
 
     @Getter
@@ -39,7 +39,7 @@ public class MathNoise3D {
         double sinW = Mathf.sin(Mathf.sin(s));
         double finalD = Mathf.sin(cosH + sinW + s);
         x = Mathf.sin(sec + sinS + cosX + sinT + finalD + (time/2)
-                + Math.floor(time/500) + Math.signum(time) + Math.log(time*s) + (time/100));
+                + Math.floor(time/500) + Math.signum(time) + Math.log(time * s) + (time/100) * Mathf.e);
         return x;
     }
 

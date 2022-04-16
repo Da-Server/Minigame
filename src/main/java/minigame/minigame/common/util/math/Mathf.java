@@ -7,6 +7,9 @@ import java.util.function.Function;
  */
 public class Mathf {
 
+    public static final double e = 2.71828;
+
+
     public static double sin(double d) {
         return Math.sin(d);
     }
@@ -32,9 +35,7 @@ public class Mathf {
     }
 
     private static double f(double x) {
-        // we are taking equation as x^3+x-1
-        double f = (double) (Math.pow(x, 3) + x - 1);
-        return f;
+        return (double) (Math.pow(x, 3) + x - 1);
     }
 
     public static double secant(double x1, double x2, float E) {
