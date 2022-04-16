@@ -44,7 +44,7 @@ public class SpigotUtil {
      * @param _3D whether its 3 Dimensional or not
      * @return The location
      */
-    public static Location getRandomLocation(Location origin, double radius, double centerRadius, boolean _3D)
+    public static Location getRandomLocation(Player origin, double radius, double centerRadius, boolean _3D)
     {
         Random r = new Random();
         double randomRadius = r.nextDouble() * radius;
@@ -54,9 +54,8 @@ public class SpigotUtil {
         double x = randomRadius * Math.cos(theta) * Math.sin(phi);
         double y = randomRadius * Math.sin(theta) * Math.cos(phi);
         double z = randomRadius * Math.cos(phi);
-        Location newLoc = origin.add(x, origin.getY(), z);
-        if (_3D)
-        {
+        Location newLoc = origin.getLocation().add(x, 0, z);
+        if (_3D) {
             newLoc.add(0, y, 0);
         }
         return newLoc;

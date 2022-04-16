@@ -82,11 +82,12 @@ public class Game {
                     cancel();
                 }
 
-                Entity firework = Minigame.getInstance().getWorld().spawnEntity(SpigotUtil.getRandomLocation(victor.getLocation(), 10, 4, false), EntityType.FIREWORK);
+                Entity firework = Minigame.getInstance().getWorld().spawnEntity(SpigotUtil.getRandomLocation(victor, 10, 4, false), EntityType.FIREWORK);
                 FireworkMeta meta = ((Firework)firework).getFireworkMeta();
                 meta.setPower(1);
                 meta.addEffects(FireworkEffect.builder().flicker(true).trail(true).withColor(Color.RED).build());
                 ((Firework) firework).setFireworkMeta(meta);
+                firework.teleport(SpigotUtil.getRandomLocation(victor, 10, 4, false));
                 d++;
             }
         }.runTaskTimer(Minigame.getInstance(), 0, 20);
