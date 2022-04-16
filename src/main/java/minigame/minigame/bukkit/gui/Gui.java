@@ -5,6 +5,7 @@ import minigame.minigame.common.util.Color;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
+import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 
 /**
@@ -78,5 +79,11 @@ public class Gui implements InventoryHolder {
     @Override
     public Inventory getInventory() {
         return inv;
+    }
+
+    public boolean equals(InventoryView view, Inventory inventory) {
+        if(inventory != view.getTopInventory()) return false;
+        if(!getName().equals(Color.colorize(view.getTitle()))) return false;
+        return true;
     }
 }

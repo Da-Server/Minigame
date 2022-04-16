@@ -2,6 +2,7 @@ package minigame.minigame.common.util.formatting;
 
 import minigame.minigame.bukkit.game.Game;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -59,6 +60,7 @@ public class Placeholder {
         properties.put("PLAYER_NAME", player.getName());
         properties.put("GRADIANT_INT", "&6");
         properties.put("COUNT_DOWN_NUMBER", i + "");
+        properties.put("COUNT_DOWN_NUMBER_ROMAN", RomanNumeral.toRoman(i) + "");
 
 
         Matcher matcher = PLACEHOLDER_PATTERN.matcher(str);
@@ -105,6 +107,39 @@ public class Placeholder {
                     matcher.group().substring(1) :
                     properties.containsKey(matcher.group("name")) ?
                             placeholder(player, player2, properties.get(matcher.group("name")) + "") :
+                            matcher.group();
+            matcher.appendReplacement(buffer, Matcher.quoteReplacement(replacement));
+
+        }
+
+        matcher.appendTail(buffer);
+
+        return buffer.toString();
+
+    }
+    /**
+     * @param player the player to use for player based placeholders
+     * @param item the player used for multi player placeholders
+     * @param str the input string that will be replaced
+     * @return outputs the string with placeholders
+     */
+    public static String placeholder(ItemStack item , Player player, String str) {
+
+        properties.put("PLAYER_COUNT", Game.getPlayerCount() + "");
+        properties.put("PLAYER_NAME", player.getName());
+        properties.put("GRADIANT_INT", "&6");
+        properties.put("ITEM", item.getItemMeta().getDisplayName());
+
+
+        Matcher matcher = PLACEHOLDER_PATTERN.matcher(str);
+
+        StringBuffer buffer = new StringBuffer();
+
+        while (matcher.find()) {
+            String replacement = matcher.group("escape") != null ?
+                    matcher.group().substring(1) :
+                    properties.containsKey(matcher.group("name")) ?
+                            placeholder(item, player, properties.get(matcher.group("name")) + "") :
                             matcher.group();
             matcher.appendReplacement(buffer, Matcher.quoteReplacement(replacement));
 

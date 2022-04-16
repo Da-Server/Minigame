@@ -31,11 +31,15 @@ public class RomanNumeral {
 
     }
 
-    public final static String toRoman(int number) {
-        int l =  map.floorKey(number);
-        if ( number == l ) {
-            return map.get(number);
+    public static String toRoman(int number) {
+        try {
+            int l = map.floorKey(number);
+            if (number == l) {
+                return map.get(number);
+            }
+            return map.get(l) + toRoman(number - l);
+        } catch(Exception e) {
+            return null;
         }
-        return map.get(l) + toRoman(number-l);
     }
 }

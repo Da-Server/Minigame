@@ -1,7 +1,9 @@
 package minigame.minigame.bukkit.item;
 
 import minigame.minigame.bukkit.item.components.AbilityType;
+import minigame.minigame.bukkit.item.components.ItemType;
 import org.bukkit.Material;
+import org.bukkit.event.Listener;
 
 /**
  * An abstract item class used for building items
@@ -49,4 +51,10 @@ public abstract class CItem {
      * @return returns the items ability type
      */
     public abstract AbilityType getAbilityType();
+
+    /**
+     * gets the ItemType
+     * @return returns the ItemType
+     */
+    public abstract ItemType getItemType();
 }

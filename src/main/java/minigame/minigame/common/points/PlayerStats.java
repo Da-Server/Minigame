@@ -1,6 +1,8 @@
 package minigame.minigame.common.points;
 
 import lombok.Getter;
+import lombok.Setter;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
@@ -10,6 +12,10 @@ import java.util.UUID;
  * A Holder for a players statistics
  */
 public class PlayerStats {
+
+    @Getter
+    @Setter
+    private ChatColor color;
 
     private boolean hasBeacon = true;
 

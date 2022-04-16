@@ -33,7 +33,7 @@ public class ItemManager {
 
         ArrayList<String> lore = new ArrayList<>();
 
-        if(item.getName() != null) meta.setDisplayName(Color.colorize(item.getName()));
+        if(item.getName() != null) meta.setDisplayName(item.getItemType().getColor() + Color.colorize( item.getName()));
 
         if(item.getDescription().length > 0) {
             lore.add("");
@@ -45,8 +45,9 @@ public class ItemManager {
             lore.add("");
         }
 
-        if(item.getAbilityName().length() > 0) {
-            lore.add("&c" + item.getAbilityName() + " &e" + item.getAbilityType().name().replace("_", " "));
+        if(item.getAbilityName() != null) {
+            lore.add(item.getItemType().getColor() + item.getAbilityName() + " &e&l" + item.getAbilityType().name().replace("_", " "));
+            lore.add("");
             if(item.getAbilityDescription().length > 0) {
                 lore.addAll(Arrays.asList(item.getAbilityDescription()));
 
@@ -54,8 +55,12 @@ public class ItemManager {
             lore.add("");
         }
 
+        if (item.getItemType() != null) {
+            lore.add(item.getItemType().getColor() + "&l" + item.getItemType().name().replace("_", " "));
+        }
 
         lore = Color.colorizeArrayList(lore);
+
 
 
         if(item.isGlowing())

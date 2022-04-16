@@ -4,7 +4,12 @@ import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
 import lombok.Getter;
 import lombok.SneakyThrows;
+import minigame.minigame.bukkit.gui.GUIManager;
+import minigame.minigame.bukkit.gui.Gui;
+import minigame.minigame.bukkit.item.CItem;
+import minigame.minigame.bukkit.item.ItemManager;
 import minigame.minigame.bukkit.position.PositionManager;
+import minigame.minigame.common.database.MySQL;
 import minigame.minigame.common.players.PlayerManager;
 import minigame.minigame.common.util.Log;
 import minigame.minigame.common.util.XMLReader;
@@ -29,20 +34,25 @@ public final class Minigame extends JavaPlugin {
     @Getter private String branch;
     @Getter private String MC_VERSION;
     @Getter private String n;
+    @Getter private MySQL mysql;
 
     @Getter private PositionManager positionManager;
     @Getter private PlayerManager playerManager;
     @Getter private ProtocolManager protocolManager;
+    @Getter private GUIManager guiManager;
+
 
     @Getter private World world;
+
+
 
     @SneakyThrows
     @Override
     public void onEnable() {
-        register();
         loadProperties();
         initManagers();
-        Log.log("Plugin Successfully enabled! version: " + n + "-" + version + "-" + MC_VERSION);
+        register();
+
     }
 
     @Override
@@ -55,6 +65,7 @@ public final class Minigame extends JavaPlugin {
     private void initManagers() throws InstantiationException, IllegalAccessException {
         playerManager = new PlayerManager();
         positionManager = new PositionManager();
+        guiManager = new GUIManager();
         positionManager.init();
     }
 
@@ -69,6 +80,8 @@ public final class Minigame extends JavaPlugin {
      * Loads the properties from the xml
      */
     private void loadProperties() {
+        //mysql = new MySQL();
+        //mysql.initialize();
         pomReader = new XMLReader("pom");
         version = pomReader.readString("version");
         branch = pomReader.readString("branch");
@@ -76,6 +89,8 @@ public final class Minigame extends JavaPlugin {
         n = pomReader.readString("name");
 
         world = Bukkit.getServer().getWorld("world");
+
+        Log.log("Plugin Successfully enabled! version: " + n + "-" + version + "-" + MC_VERSION);
     }
 
     /**
@@ -92,6 +107,14 @@ public final class Minigame extends JavaPlugin {
 
         for(Class<? extends CommandExecutor> c : new Reflections("minigame.minigame.bukkit.commands").getSubTypesOf(CommandExecutor.class)) {
             Bukkit.getPluginCommand(c.getSimpleName().toLowerCase()).setExecutor(c.newInstance());
+        }
+
+        for(Class<? extends CItem> c : reflections.getSubTypesOf(CItem.class)) {
+            ItemManager.buildItem(c.newInstance());
+        }
+
+        for(Class<? extends Gui> c : reflections.getSubTypesOf(Gui.class)) {
+            guiManager.registerGui(c.getSimpleName().toLowerCase(), c.newInstance());
         }
     }
 

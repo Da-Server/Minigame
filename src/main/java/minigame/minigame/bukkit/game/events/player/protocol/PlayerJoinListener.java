@@ -31,17 +31,17 @@ public class PlayerJoinListener implements Listener {
             player.kickPlayer(Config.GAME_RUNNING_MESSAGE);
             event.setJoinMessage("");
         } else if(Game.getPlayerCount() > 8) {
-
+            player.kickPlayer(Config.GAME_FULL_MESSAGE);
+            event.setJoinMessage("");
         }
-
-
 
 
         event.setJoinMessage(Placeholder.placeholder(0, player, Config.JOIN_MESSAGE));
 
 
 
-        for(Player onlinePlayer : Bukkit.getOnlinePlayers())
+        for(Player onlinePlayer : Bukkit.getOnlinePlayers()) {
             onlinePlayer.playSound(onlinePlayer.getLocation(), Config.JOIN_SOUND, 2, 0.1f);
+        }
     }
 }

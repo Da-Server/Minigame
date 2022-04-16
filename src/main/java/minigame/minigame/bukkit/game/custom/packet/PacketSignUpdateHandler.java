@@ -90,7 +90,7 @@ public class PacketSignUpdateHandler {
         ChannelPipeline pipeline = ((CraftPlayer)player).getHandle().playerConnection.networkManager.channel.pipeline();
 
         //add to the pipeline
-        pipeline.addBefore("packet_handler",player.getName(),handler);
+        pipeline.addBefore("packet_handler", player.getName(),handler);
     }
     private  Object value(Object instance, String name){
         //make result null

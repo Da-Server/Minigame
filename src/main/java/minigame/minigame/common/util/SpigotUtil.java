@@ -4,12 +4,15 @@ import net.minecraft.server.v1_8_R3.IChatBaseComponent;
 import net.minecraft.server.v1_8_R3.PacketPlayOutTitle;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 import java.lang.reflect.Constructor;
+import java.util.Random;
 
 public class SpigotUtil {
+
 
     /**
      * Send a title to player
@@ -30,6 +33,33 @@ public class SpigotUtil {
 
         ((CraftPlayer) player).getHandle().playerConnection.sendPacket(title);
         ((CraftPlayer) player).getHandle().playerConnection.sendPacket(length);
+    }
+
+
+    /**
+     * gets a random location around a center point
+     * @param origin the center point
+     * @param radius the radius to fin
+     * @param centerRadius the centers radius to ignore
+     * @param _3D whether its 3 Dimensional or not
+     * @return The location
+     */
+    public static Location getRandomLocation(Location origin, double radius, double centerRadius, boolean _3D)
+    {
+        Random r = new Random();
+        double randomRadius = r.nextDouble() * radius;
+        double theta =  Math.toRadians(r.nextDouble() * 360 - centerRadius);
+        double phi = Math.toRadians(r.nextDouble() * 180 - 90 - centerRadius);
+
+        double x = randomRadius * Math.cos(theta) * Math.sin(phi);
+        double y = randomRadius * Math.sin(theta) * Math.cos(phi);
+        double z = randomRadius * Math.cos(phi);
+        Location newLoc = origin.add(x, origin.getY(), z);
+        if (_3D)
+        {
+            newLoc.add(0, y, 0);
+        }
+        return newLoc;
     }
 
 

@@ -1,5 +1,6 @@
 package minigame.minigame.common.players;
 
+import lombok.Getter;
 import minigame.minigame.common.points.PlayerStats;
 import org.bukkit.entity.Player;
 
@@ -12,7 +13,9 @@ public class PlayerManager {
 
     private final List <Player> players = new ArrayList<>();
     private final Map<UUID, PlayerStats> stats = new HashMap <>();
+    @Getter
     private final List<Player> livingPlayers = new ArrayList <>();
+    @Getter
     private final List<Player> deadPlayers = new ArrayList <>();
 
 

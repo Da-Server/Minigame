@@ -61,4 +61,8 @@ public class PacketSignUpdateEvent extends Event implements Cancellable {
         return HANDLER;
     }
 
+    public void write(String... write) {
+
+    }
+
 }
