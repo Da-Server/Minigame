@@ -40,7 +40,7 @@ public class BlockHandler {
      * @param player the player that's breaking it
      * @param plugin the plugin detecting the breaking
      */
-    public void handle(Player player, JavaPlugin plugin){
+    public void handle(Player player, JavaPlugin plugin) {
 
 
         //Getting channel handler

@@ -5,6 +5,10 @@ import minigame.minigame.common.util.math.Mathf;
 
 import java.util.Random;
 
+/**
+ * A Class that holds methods for custom
+ * noise generation
+ */
 public class MathNoise3D {
 
 
@@ -21,6 +25,7 @@ public class MathNoise3D {
         double z = noise(time, seed);
         return new double[]{x, y, z};
     }
+
 
     private double noise(double time, double random) {
         double x = 0;

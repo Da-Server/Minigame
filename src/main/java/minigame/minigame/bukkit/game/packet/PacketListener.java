@@ -4,6 +4,7 @@ import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolManager;
 import com.comphenix.protocol.events.ListenerPriority;
 import com.comphenix.protocol.events.PacketAdapter;
+import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.events.PacketEvent;
 import minigame.minigame.Minigame;
 
@@ -25,7 +26,6 @@ public class PacketListener {
      * onPacketReceive tasks are called here
      */
     private void receive() {
-        //TODO: ADD EVENTS
     }
 
 

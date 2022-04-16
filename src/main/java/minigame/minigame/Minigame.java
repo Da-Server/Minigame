@@ -7,6 +7,8 @@ import lombok.SneakyThrows;
 import minigame.minigame.bukkit.position.PositionManager;
 import minigame.minigame.common.commands.Command;
 import minigame.minigame.common.players.PlayerManager;
+import minigame.minigame.common.util.Log;
+import minigame.minigame.common.util.XMLReader;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.command.CommandExecutor;
@@ -22,6 +24,12 @@ public final class Minigame extends JavaPlugin {
 
     private static Minigame instance;
     private static final Reflections reflections = new Reflections();
+    
+    @Getter private XMLReader pomReader;
+    @Getter private String version;
+    @Getter private String branch;
+    @Getter private String MC_VERSION;
+    @Getter private String name;
 
     @Getter private PositionManager positionManager;
     @Getter private PlayerManager playerManager;
@@ -34,6 +42,8 @@ public final class Minigame extends JavaPlugin {
     public void onEnable() {
         initManagers();
         register();
+        loadProperties();
+        Log.log("Plugin Successfully enabled! version: " + name + "-" + version + "-" + MC_VERSION);
     }
 
     @Override
@@ -54,6 +64,17 @@ public final class Minigame extends JavaPlugin {
     public void onLoad() {
         instance = this;
         protocolManager = ProtocolLibrary.getProtocolManager();
+    }
+
+    /**
+     * Loads the properties from the xml
+     */
+    private void loadProperties() {
+        pomReader = new XMLReader("pom");
+        version = pomReader.readString("version");
+        branch = pomReader.readString("branch");
+        MC_VERSION = pomReader.readString("mc.version");
+        name = pomReader.readString("name");
     }
 
     /**
