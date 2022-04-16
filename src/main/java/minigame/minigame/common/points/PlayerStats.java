@@ -1,6 +1,9 @@
 package minigame.minigame.common.points;
 
 import lombok.Getter;
+import lombok.Setter;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 import java.util.UUID;
@@ -11,6 +14,12 @@ import java.util.UUID;
 public class PlayerStats {
 
     @Getter
+    @Setter
+    private ChatColor color;
+
+    private boolean hasBeacon = true;
+
+    @Getter
     private int points = 0;
 
     @Getter
@@ -19,8 +28,27 @@ public class PlayerStats {
     @Getter
     private UUID player = null;
 
+    @Getter
+    private Location beaconLocation;
+
     public PlayerStats(Player player) {
         this.player = player.getUniqueId();
+    }
+
+    /**
+     * Changed whether the player has or doesn't have a beacon
+     * @param hasBeacon the value to change to
+     */
+    public void setHasBeacon(boolean hasBeacon) {
+        this.hasBeacon = hasBeacon;
+    }
+
+    /**
+     * gets hasBeacon variable and
+     * @return returns hasBeacon variable
+     */
+    public boolean hasBeacon() {
+        return hasBeacon;
     }
 
     /**

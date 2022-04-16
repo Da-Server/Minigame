@@ -1,4 +1,4 @@
-package minigame.minigame.bukkit.game.custom;
+package minigame.minigame.bukkit.game.custom.block;
 
 import lombok.Getter;
 import org.bukkit.block.Block;
@@ -9,7 +9,7 @@ import org.bukkit.event.HandlerList;
 
 /**
  * A Custom event handled by BlockHandler class
- * Gets Called While a player is diggin
+ * Gets Called While a player is digging
  */
 public class PlayerBlockDigEvent extends Event implements Cancellable {
 

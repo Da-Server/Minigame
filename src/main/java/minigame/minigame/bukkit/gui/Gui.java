@@ -5,6 +5,7 @@ import minigame.minigame.common.util.Color;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
+import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 
 /**
@@ -18,9 +19,10 @@ public class Gui implements InventoryHolder {
      */
     public static final int MAX_SIZE = 54;
 
-    @Getter
     private Inventory inv;
+    @Getter
     private int size = 0;
+    @Getter
     private String name = "";
 
     /**
@@ -30,6 +32,7 @@ public class Gui implements InventoryHolder {
      */
     public Gui(String name, int size) {
         inv = Bukkit.createInventory(this, size, Color.colorize(name));
+        this.name = Color.colorize(name);
         this.size = size;
     }
 
@@ -59,6 +62,15 @@ public class Gui implements InventoryHolder {
         }
     }
 
+    /**
+     *
+     * @param i the slot to set
+     * @param item the item to set it to
+     */
+    public void setItem(int i, ItemStack item) {
+        inv.setItem(i, item);
+    }
+
 
     /**
      *
@@ -67,5 +79,11 @@ public class Gui implements InventoryHolder {
     @Override
     public Inventory getInventory() {
         return inv;
+    }
+
+    public boolean equals(InventoryView view, Inventory inventory) {
+        if(inventory != view.getTopInventory()) return false;
+        if(!getName().equals(Color.colorize(view.getTitle()))) return false;
+        return true;
     }
 }

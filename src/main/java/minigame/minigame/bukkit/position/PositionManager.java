@@ -6,24 +6,30 @@ import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 /**
  * Manage spawn positions.
  */
 public class PositionManager {
-    public static final HashMap<Location, UUID> posMap = new HashMap<>();
-    public static final ArrayList<Location> locations = new ArrayList<>();
+    private final HashMap<Location, UUID> posMap = new HashMap<>();
+    private final List <Location> locations = new ArrayList<>();
 
-    public static final Location PRE_GAME = new Location(Minigame.world, 0, 200, 0);
+
+
+
+    private Location pre;
 
     /**
      * Initialise the position manager
      */
-    public static void init() {
+    public void init() {
         locations.add(getLoc(0,100,0));
         locations.add(getLoc(1,100,0));
         locations.add(getLoc(0,100,1));
+
+        pre = new Location(Minigame.getInstance().getWorld(), 0, 200, 0);
     }
 
     /**
@@ -32,7 +38,7 @@ public class PositionManager {
      * @return the location that the player has been given to spawn in
      * @see Location
      */
-    public static Location pickLoc(Player player) {
+    public Location pickLoc(Player player) {
         UUID id = player.getUniqueId();
         int i = 0;
         for(Location l : locations) {
@@ -57,6 +63,27 @@ public class PositionManager {
      * @see Location
      */
     private static Location getLoc(int x, int y, int z) {
-        return new Location(Minigame.world, x,y,z);
+        return new Location(Minigame.getInstance().getWorld(), x,y,z);
     }
+
+    /**
+     *
+     * @return returns the position Map
+     */
+    public HashMap <Location, UUID> getPosMap() {
+        return posMap;
+    }
+
+    /**
+     *
+     * @return returns the location list
+     */
+    public List <Location> getLocations() {
+        return locations;
+    }
+
+    public Location getPre() {
+        return pre;
+    }
+
 }

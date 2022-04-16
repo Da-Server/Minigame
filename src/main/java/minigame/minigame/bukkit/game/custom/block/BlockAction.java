@@ -1,4 +1,4 @@
-package minigame.minigame.bukkit.game.custom;
+package minigame.minigame.bukkit.game.custom.block;
 
 /**
  * Block Actions for the PlayerBlockDigEvent

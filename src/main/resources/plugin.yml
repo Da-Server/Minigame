@@ -2,15 +2,19 @@ name: Minigame
 version: '${project.version}'
 main: minigame.minigame.Minigame
 authors: [ Wyvern ]
+depend: [ProtocolLib]
 commands:
   forcestart:
     permission: "minigame.forcestart"
   forceend:
     permission: "minigame.forcend"
-
+  ci:
+    permission: "minigame.customitem"
 
 permissions:
   minigame.forcestart:
     default: op
   minigame.forceend:
+    default: op
+  minigame.customitem:
     default: op

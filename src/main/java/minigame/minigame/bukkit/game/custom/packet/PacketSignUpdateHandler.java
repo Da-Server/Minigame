@@ -1,8 +1,12 @@
-package minigame.minigame.bukkit.game.custom;
+package minigame.minigame.bukkit.game.custom.packet;
 
 import io.netty.channel.*;
+import minigame.minigame.bukkit.game.custom.block.BlockAction;
+import minigame.minigame.bukkit.game.custom.block.PlayerBlockDigEvent;
 import net.minecraft.server.v1_8_R3.BlockPosition;
+import net.minecraft.server.v1_8_R3.IChatBaseComponent;
 import net.minecraft.server.v1_8_R3.PacketPlayInBlockDig;
+import net.minecraft.server.v1_8_R3.PacketPlayInUpdateSign;
 import org.bukkit.Bukkit;
 import org.bukkit.block.Block;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
@@ -12,22 +16,19 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.lang.reflect.Field;
 
 /**
- * A Handler for block events
+ * A Packet Event handler handling packet events
  */
-public class BlockHandler {
+public class PacketSignUpdateHandler {
     /**
      * Removed the player from the handler
      * @param player the player to be removed
      */
     public void remove(Player player) {
 
-        //get the channel
         Channel channel = ((CraftPlayer)player).getHandle().playerConnection.networkManager.channel;
 
-        //event loop
         channel.eventLoop().submit(() -> {
 
-            //remove the player from the pipeline
             channel.pipeline().remove(player.getName());
 
             //returning null
@@ -37,67 +38,44 @@ public class BlockHandler {
 
     /**
      * Handles the packets
-     * @param player the player thats breaking it
-     * @param plugin the plugin detecting the breaking
+     * @param player the player that edited it
+     * @param plugin the plugin detecting the update
      */
     public void handle(Player player, JavaPlugin plugin){
 
 
-        //Getting channel handler
         ChannelDuplexHandler handler = new ChannelDuplexHandler(){
 
-            //channel read
             @Override
-            public void channelRead(ChannelHandlerContext channelHandlerContext, Object packet) throws Exception {
-                //if the packet is PlayInBlockDig
-                if(packet instanceof PacketPlayInBlockDig){
+            public void channelRead(ChannelHandlerContext channelHandlerContext, Object p) throws Exception {
+                if(p instanceof PacketPlayInUpdateSign){
 
-                    //create the packet
-                    PacketPlayInBlockDig block = (PacketPlayInBlockDig) packet;
+                    PacketPlayInUpdateSign packet = (PacketPlayInUpdateSign) p;
 
-                    //get the block pos
-                    BlockPosition a = (BlockPosition) value(block,"a");
+                    BlockPosition a = (BlockPosition) value(packet,"a");
 
-                    //get the type
-                    PacketPlayInBlockDig.EnumPlayerDigType c = ( PacketPlayInBlockDig.EnumPlayerDigType) value(block,"c");
+                    IChatBaseComponent[] text = packet.b();
 
                     //get the block
                     Block d = player.getLocation().getWorld().getBlockAt(a.getX(),a.getY(),a.getZ());
 
-                    //add the action
-                    BlockAction action;
 
-                    //switch through the enum
-                    switch (c) {
-                        case STOP_DESTROY_BLOCK:
-                            action = BlockAction.STOP;
-                            break;
-                        case START_DESTROY_BLOCK:
-                            action = BlockAction.START;
-                            break;
-                        case ABORT_DESTROY_BLOCK:
-                            action = BlockAction.ABORT;
-                            break;
-                        default:
-                            throw new IllegalStateException("Unexpected value: " + c);
-
+                    String[] strings = new String[text.length];
+                    int j = 0;
+                    for(IChatBaseComponent c : text) {
+                        strings[j] = c.getText();
+                        j++;
                     }
 
+                    PacketSignUpdateEvent update = new PacketSignUpdateEvent(player, strings, d, packet);
 
-                    //the event
-                    PlayerBlockDigEvent dig = new PlayerBlockDigEvent(player,d,action);
-
-                    //if its cancelled return
-                    if(dig.isCancelled()){
-
-                        //returning
+                    if(update.isCancelled()){
                         return;
                     }
-                    //run a task later
-                    Bukkit.getScheduler().runTaskLater(plugin, () -> Bukkit.getPluginManager().callEvent(dig),0);
+                    Bukkit.getScheduler().runTaskLater(plugin, () -> Bukkit.getPluginManager().callEvent(update),0);
                 }
                 //channel read
-                super.channelRead(channelHandlerContext, packet);
+                super.channelRead(channelHandlerContext, p);
 
             }
 
@@ -105,14 +83,14 @@ public class BlockHandler {
             @Override
             public void write(ChannelHandlerContext channelHandlerContext, Object packet, ChannelPromise channelPromise) throws Exception {
 
-                super.write(channelHandlerContext, packet,channelPromise);
+                super.write(channelHandlerContext, packet, channelPromise);
             }
         };
         //getting the pipeline
         ChannelPipeline pipeline = ((CraftPlayer)player).getHandle().playerConnection.networkManager.channel.pipeline();
 
         //add to the pipeline
-        pipeline.addBefore("packet_handler",player.getName(),handler);
+        pipeline.addBefore("packet_handler", player.getName(),handler);
     }
     private  Object value(Object instance, String name){
         //make result null

@@ -1,12 +1,18 @@
 package minigame.minigame.common.util;
 
+import net.minecraft.server.v1_8_R3.IChatBaseComponent;
+import net.minecraft.server.v1_8_R3.PacketPlayOutTitle;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 import java.lang.reflect.Constructor;
+import java.util.Random;
 
 public class SpigotUtil {
+
 
     /**
      * Send a title to player
@@ -19,52 +25,42 @@ public class SpigotUtil {
      */
     public static void sendTitle(Player player, String text, int fadeInTime, int showTime, int fadeOutTime, ChatColor color)
     {
-        try
-        {
-            Object chatTitle = getNMSClass("IChatBaseComponent").getDeclaredClasses()[0].getMethod("a", String.class).invoke(null, "{\"text\": \"" + text + "\",color:" + color.name().toLowerCase() + "}");
+        IChatBaseComponent chatTitle = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + text + "\",color:" + color.name().toLowerCase() + "}");
 
-            Constructor <?> titleConstructor = getNMSClass("PacketPlayOutTitle").getConstructor(getNMSClass("PacketPlayOutTitle").getDeclaredClasses()[0], getNMSClass("IChatBaseComponent"), int.class, int.class, int.class);
-            Object packet = titleConstructor.newInstance(getNMSClass("PacketPlayOutTitle").getDeclaredClasses()[0].getField("TITLE").get(null), chatTitle, fadeInTime, showTime, fadeOutTime);
+        PacketPlayOutTitle title = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.TITLE, chatTitle);
+        PacketPlayOutTitle length = new PacketPlayOutTitle(fadeInTime, showTime, fadeOutTime);
 
-            sendPacket(player, packet);
-        }
 
-        catch (Exception ex)
-        {
-            //Do something
-        }
+        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(title);
+        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(length);
     }
 
-    private static void sendPacket(Player player, Object packet)
-    {
-        try
-        {
-            Object handle = player.getClass().getMethod("getHandle").invoke(player);
-            Object playerConnection = handle.getClass().getField("playerConnection").get(handle);
-            playerConnection.getClass().getMethod("sendPacket", getNMSClass("Packet")).invoke(playerConnection, packet);
-        }
-        catch(Exception ex)
-        {
-            //Do something
-        }
-    }
 
     /**
-     * Get NMS class using reflection
-     * @param name Name of the class
-     * @return Class
+     * gets a random location around a center point
+     * @param origin the center point
+     * @param radius the radius to fin
+     * @param centerRadius the centers radius to ignore
+     * @param _3D whether its 3 Dimensional or not
+     * @return The location
      */
-    private static Class<?> getNMSClass(String name)
+    public static Location getRandomLocation(Player origin, double radius, double centerRadius, boolean _3D)
     {
-        try
-        {
-            return Class.forName("net.minecraft.server" + Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3] + "." + name);
+        Random r = new Random();
+        double randomRadius = r.nextDouble() * radius;
+        double theta =  Math.toRadians(r.nextDouble() * 360 - centerRadius);
+        double phi = Math.toRadians(r.nextDouble() * 180 - 90 - centerRadius);
+
+        double x = randomRadius * Math.cos(theta) * Math.sin(phi);
+        double y = randomRadius * Math.sin(theta) * Math.cos(phi);
+        double z = randomRadius * Math.cos(phi);
+        Location newLoc = origin.getLocation().add(x, 0, z);
+        if (_3D) {
+            newLoc.add(0, y, 0);
         }
-        catch(ClassNotFoundException ex)
-        {
-            //Do something
-        }
-        return null;
+        return newLoc;
     }
+
+
 
 }

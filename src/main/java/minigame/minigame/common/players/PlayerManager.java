@@ -1,17 +1,22 @@
 package minigame.minigame.common.players;
 
+import lombok.Getter;
 import minigame.minigame.common.points.PlayerStats;
 import org.bukkit.entity.Player;
 
 import java.util.*;
 
 /**
- * A Manager for player statistics & Players
+ * A Manager for player statistics and Players
  */
 public class PlayerManager {
 
     private final List <Player> players = new ArrayList<>();
     private final Map<UUID, PlayerStats> stats = new HashMap <>();
+    @Getter
+    private final List<Player> livingPlayers = new ArrayList <>();
+    @Getter
+    private final List<Player> deadPlayers = new ArrayList <>();
 
 
     /**
@@ -21,6 +26,7 @@ public class PlayerManager {
     public void add(Player player) {
         players.add(player);
         stats.put(player.getUniqueId(), new PlayerStats(player));
+        livingPlayers.add(player);
     }
 
     /**
@@ -30,6 +36,20 @@ public class PlayerManager {
     public void remove(Player player) {
         players.remove(player);
         stats.remove(player.getUniqueId());
+
+        livingPlayers.remove(player);
+        deadPlayers.remove(player);
+    }
+
+    /**
+     * changes a player to the dead list
+     * @param player the player to change
+     */
+    public void setDead(Player player) {
+        if(livingPlayers.contains(player)) {
+            livingPlayers.remove(player);
+            deadPlayers.remove(player);
+        }
     }
 
     /**
