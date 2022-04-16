@@ -2,6 +2,9 @@ package minigame.minigame.bukkit.configs;
 
 import java.util.ArrayList;
 
+/**
+ * A Configuration file for chat messages
+ */
 public class ChatConfig {
 
     public static final ArrayList<String> blacklisted = new ArrayList <String>();

@@ -1,5 +1,7 @@
 package minigame.minigame.bukkit.configs;
-
+/**
+ * A Configuration file for mysql DB
+ */
 public class MySQLConfig {
 
     public static final String DB_NAME = "plutoser_daserver1 ";
