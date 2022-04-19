@@ -22,18 +22,10 @@ import java.util.ArrayList;
  */
 public class Game {
 
-    @Setter
-    private static boolean isRunning = false;
-
-    @Getter
-    private static PlayerManager playerManager;
-
-    @Getter
-    private static Game game = new Game();
-
-    @Getter
-    @Setter
-    public static int playerCount = 0;
+    @Setter private static boolean isRunning = false;
+    @Getter private static PlayerManager playerManager;
+    @Getter private static Game game = new Game();
+    @Getter @Setter public static int playerCount = 0;
 
     /**
      * Check if the game is currently active
@@ -43,26 +35,16 @@ public class Game {
         return isRunning;
     }
 
-    /**
-     * Quick event for when the game starts.
-     */
-    public static void onStart() {
-        playerManager = Minigame.getInstance().getPlayerManager();
-        countDown(10).runTaskTimer(Minigame.getInstance(), 0, 20);
-
-    }
     public static void start() {
         isRunning = true;
+        playerManager = Minigame.getInstance().getPlayerManager();
+        Game.countDown(10).runTaskTimer(Minigame.getInstance(), 0, 20);
         game.broadcastSound(Config.START_SOUND, 2,2f);
-
         game.broadcastTitle(Config.GAME_START_TITLE, 20, 20, 20, ChatColor.GREEN);
     }
 
-    public static void onEnd() {
-        end();
-        isRunning = false;
-    }
     public static void end() {
+        isRunning = false;
         playerManager.getPlayerList().forEach((player) -> {
             player.setGameMode(GameMode.ADVENTURE);
             player.getInventory().clear();
@@ -94,7 +76,7 @@ public class Game {
     }
 
 
-    private static BukkitRunnable countDown(int length) {
+    public static BukkitRunnable countDown(int length) {
         final int[] current = {0};
         return new BukkitRunnable() {
             @Override

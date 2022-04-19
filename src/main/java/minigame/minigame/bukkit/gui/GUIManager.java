@@ -24,7 +24,4 @@ public class GUIManager implements Listener {
         idMap.put(id, gui);
     }
 
-
-
-
 }
