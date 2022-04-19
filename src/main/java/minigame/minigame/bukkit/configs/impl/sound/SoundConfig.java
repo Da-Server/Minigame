@@ -6,6 +6,10 @@ import minigame.minigame.bukkit.configs.exceptions.InvalidFileExtensionException
 
 import java.io.File;
 
+/**
+ * This configuration is responsible for the sound values related to {@link minigame.minigame.bukkit.game.Game}
+ * @see AbstractYamlConfiguration
+ */
 public class SoundConfig extends AbstractYamlConfiguration<SoundConfigData> {
 
     private static SoundConfig instance;

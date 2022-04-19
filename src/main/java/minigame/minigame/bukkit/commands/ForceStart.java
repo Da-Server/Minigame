@@ -10,6 +10,10 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+/**
+ * An in-game command related to {@link Game}
+ * Force starts the game, Requires minigame.forcestart permission.
+ */
 public class ForceStart implements CommandExecutor {
 
     private final ChatPlaceHoldersConfig placeHoldersConfig = ChatPlaceHoldersConfig.get();

@@ -11,6 +11,10 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+/**
+ * An in-game command related to {@link Game}
+ * Used to force end a game, Requires minigame.forceend permission
+ */
 public class ForceEnd implements CommandExecutor {
 
     private final ChatPlaceHoldersConfig placeHolders = ChatPlaceHoldersConfig.get();

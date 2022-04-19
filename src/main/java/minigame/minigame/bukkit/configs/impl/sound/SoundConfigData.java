@@ -8,6 +8,11 @@ import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * This is a data holder for the sound configuration
+ * @see SoundConfig
+ * @see minigame.minigame.bukkit.configs.AbstractYamlConfiguration
+ */
 @Getter
 @Setter
 public class SoundConfigData implements ConfigurationSerializable {
