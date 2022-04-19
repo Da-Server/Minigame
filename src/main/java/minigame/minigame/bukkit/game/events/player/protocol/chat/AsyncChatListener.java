@@ -1,6 +1,6 @@
 package minigame.minigame.bukkit.game.events.player.protocol.chat;
 
-import minigame.minigame.bukkit.configs.ChatConfig;
+import minigame.minigame.bukkit.configs.impl.chat.ChatBlacklistConfig;
 import minigame.minigame.common.util.Color;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -20,7 +20,7 @@ public class AsyncChatListener implements Listener {
         Player player = event.getPlayer();
         String msg = event.getMessage();
 
-        for(String s : ChatConfig.blacklisted) {
+        for(String s : ChatBlacklistConfig.get().getBlackListedWords()) {
             if(msg.contains(s)) {
                 event.setCancelled(true);
                 player.sendMessage(Color.colorize("&cNaughty don't do that!"));

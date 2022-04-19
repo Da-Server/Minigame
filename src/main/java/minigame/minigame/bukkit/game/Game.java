@@ -3,7 +3,8 @@ package minigame.minigame.bukkit.game;
 import lombok.Getter;
 import lombok.Setter;
 import minigame.minigame.Minigame;
-import minigame.minigame.bukkit.configs.Config;
+import minigame.minigame.bukkit.configs.impl.chat.placeholders.ChatPlaceHoldersConfig;
+import minigame.minigame.bukkit.configs.impl.sound.SoundConfig;
 import minigame.minigame.common.players.PlayerManager;
 import minigame.minigame.common.util.SpigotUtil;
 import minigame.minigame.common.util.formatting.Placeholder;
@@ -15,8 +16,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.ArrayList;
-
 /**
  * The game manager, responsible for keeping track of what is happening within the game.
  */
@@ -26,6 +25,9 @@ public class Game {
     @Getter private static PlayerManager playerManager;
     @Getter private static Game game = new Game();
     @Getter @Setter public static int playerCount = 0;
+
+    private static final ChatPlaceHoldersConfig placeHoldersConfig = ChatPlaceHoldersConfig.get();
+    private static final SoundConfig soundConfig = SoundConfig.get();
 
     /**
      * Check if the game is currently active
@@ -39,8 +41,8 @@ public class Game {
         isRunning = true;
         playerManager = Minigame.getInstance().getPlayerManager();
         Game.countDown(10).runTaskTimer(Minigame.getInstance(), 0, 20);
-        game.broadcastSound(Config.START_SOUND, 2,2f);
-        game.broadcastTitle(Config.GAME_START_TITLE, 20, 20, 20, ChatColor.GREEN);
+        game.broadcastSound(soundConfig.getData().getStartSound(), 2,2f);
+        game.broadcastTitle(placeHoldersConfig.getData().getGameStartTitle(), 20, 20, 20, ChatColor.GREEN);
     }
 
     public static void end() {
@@ -53,9 +55,9 @@ public class Game {
         Player victor = playerManager.getLivingPlayers().get(0);
 
         for(Player p : playerManager.getDeadPlayers()) {
-            SpigotUtil.sendTitle(p, Config.GAME_OVER_TITLE, 20, 20, 20, ChatColor.RED);
+            SpigotUtil.sendTitle(p, placeHoldersConfig.getData().getGameOverTitle(), 20, 20, 20, ChatColor.RED);
         }
-        SpigotUtil.sendTitle(victor, Config.VICTORY_TITLE, 20, 20, 20, ChatColor.GOLD);
+        SpigotUtil.sendTitle(victor, placeHoldersConfig.getData().getVictoryTitle(), 20, 20, 20, ChatColor.GOLD);
         new BukkitRunnable() {
             int d = 0;
             @Override
@@ -87,9 +89,9 @@ public class Game {
 
                 }
                 if(current[0] - length != 0) {
-                    Bukkit.broadcastMessage(Placeholder.placeholder(length - current[0], Minigame.getInstance().getPlayerManager().getPlayerList().get(0), Config.COUNT_DOWN_CHAT));
-                    game.broadcastTitle(Placeholder.placeholder(length - current[0], Minigame.getInstance().getPlayerManager().getPlayerList().get(0), Config.COUNT_DOWN_TITLE), 20, 20, 20, ChatColor.GOLD);
-                    game.broadcastSound(Config.COUNT_SOUND, 2, 2);
+                    Bukkit.broadcastMessage(Placeholder.placeholder(length - current[0], Minigame.getInstance().getPlayerManager().getPlayerList().get(0), placeHoldersConfig.getData().getCountDownChat()));
+                    game.broadcastTitle(Placeholder.placeholder(length - current[0], Minigame.getInstance().getPlayerManager().getPlayerList().get(0), placeHoldersConfig.getData().getCountDownTitle()), 20, 20, 20, ChatColor.GOLD);
+                    game.broadcastSound(soundConfig.getData().getCountSound(), 2, 2);
                 }
                 current[0]++;
             }

@@ -49,6 +49,7 @@ public final class Minigame extends JavaPlugin {
     @SneakyThrows
     @Override
     public void onEnable() {
+        getDataFolder().mkdirs();
         loadProperties();
         initManagers();
         register();
@@ -57,7 +58,6 @@ public final class Minigame extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        
     }
 
     /**

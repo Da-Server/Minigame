@@ -11,21 +11,21 @@ public class GameEventListener implements Listener {
 
 
     @EventHandler
-    void onGameStart(GameStartEvent evt) {
+    void onGameStart(GameStartEvent event) {
         Game.start();
 
         // for testing purposes
-        if (evt.isForced()) {
+        if (event.isForced()) {
             Minigame.getInstance().getLogger().info("Force started a manhunt game");
         } else Minigame.getInstance().getLogger().info("Started a manhunt game");
     }
 
     @EventHandler
-    void onGameEnd(GameEndEvent evt) {
+    void onGameEnd(GameEndEvent event) {
         Game.end();
 
         // for testing purposes
-        if (evt.isForced()) {
+        if (event.isForced()) {
             Minigame.getInstance().getLogger().info("Force started a manhunt game");
         } else Minigame.getInstance().getLogger().info("Started a manhunt game");
     }

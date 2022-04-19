@@ -1,13 +1,12 @@
 package minigame.minigame.bukkit.gui.guis;
 
-import minigame.minigame.bukkit.configs.Config;
+import minigame.minigame.bukkit.configs.impl.chat.placeholders.ChatPlaceHoldersConfig;
+import minigame.minigame.bukkit.configs.impl.sound.SoundConfig;
 import minigame.minigame.bukkit.gui.Gui;
 import minigame.minigame.bukkit.gui.components.MenuGlass;
-import minigame.minigame.bukkit.item.CItem;
 import minigame.minigame.bukkit.item.ItemManager;
 import minigame.minigame.common.util.Color;
 import minigame.minigame.common.util.formatting.Placeholder;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,6 +16,9 @@ import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 
 public class ItemGUI extends Gui implements Listener {
+
+
+
     /**
      * Initializes the GUI
      */
@@ -37,13 +39,15 @@ public class ItemGUI extends Gui implements Listener {
         Inventory clicked = event.getClickedInventory();
         InventoryView view = event.getView();
         String title = Color.colorize(view.getTitle());
+        final ChatPlaceHoldersConfig placeHoldersConfig = ChatPlaceHoldersConfig.get();
+        final SoundConfig soundConfig = SoundConfig.get();
         if(this.equals(view, clicked)) {
             event.setCancelled(true);
             for(ItemStack i : ItemManager.getItemMap().values()) {
                 if(currentItem.equals(i)) {
                     player.getInventory().addItem(currentItem);
-                    player.sendMessage(Placeholder.placeholder(currentItem, player, Config.GAVE_ITEM_MESSAGE));
-                    player.playSound(player.getLocation(), Config.GUI_CLICK_SOUND, 2, 2);
+                    player.sendMessage(Placeholder.placeholder(currentItem, player, placeHoldersConfig.getData().getGaveItemMessage()));
+                    player.playSound(player.getLocation(), soundConfig.getData().getGuiClickSound(), 2, 2);
                 }
             }
         }
