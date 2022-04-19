@@ -3,7 +3,6 @@ package minigame.minigame.bukkit.item;
 import minigame.minigame.bukkit.item.components.AbilityType;
 import minigame.minigame.bukkit.item.components.ItemType;
 import org.bukkit.Material;
-import org.bukkit.event.Listener;
 
 /**
  * An abstract item class used for building items
