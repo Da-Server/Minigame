@@ -26,9 +26,9 @@ public class MySQLConfigData implements ConfigurationSerializable {
     protected MySQLConfigData() {
         // defaults
         this.dbName = "plutoser_daserver1 ";
-        this.dbHost = "199.195.255.51";
-        this.dbUser = "plutoser_daserver1 ";
-        this.dbPassword = "Sumfuckingpassword895075";
+        this.dbHost = "";
+        this.dbUser = "";
+        this.dbPassword = "";
         this.dbPort = 3306;
     }
 
