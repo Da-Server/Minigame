@@ -29,4 +29,5 @@ public class Color {
         list.forEach((str) -> newList.add(colorize(str)));
         return newList;
     }
+
 }

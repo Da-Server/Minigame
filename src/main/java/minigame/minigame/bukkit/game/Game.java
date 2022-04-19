@@ -5,7 +5,7 @@ import lombok.Setter;
 import minigame.minigame.Minigame;
 import minigame.minigame.bukkit.configs.Config;
 import minigame.minigame.common.players.PlayerManager;
-import minigame.minigame.common.util.SpigotUtil;
+import minigame.minigame.common.util.org.spigot.SpigotUtil;
 import minigame.minigame.common.util.formatting.Placeholder;
 import org.bukkit.*;
 import org.bukkit.entity.Entity;
@@ -15,8 +15,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.ArrayList;
-
 /**
  * The game manager, responsible for keeping track of what is happening within the game.
  */
@@ -24,7 +22,7 @@ public class Game {
 
     @Setter private static boolean isRunning = false;
     @Getter private static PlayerManager playerManager;
-    @Getter private static Game game = new Game();
+    @Getter private static final Game game = new Game();
     @Getter @Setter public static int playerCount = 0;
 
     /**
@@ -69,7 +67,7 @@ public class Game {
                 meta.setPower(1);
                 meta.addEffects(FireworkEffect.builder().flicker(true).trail(true).withColor(Color.RED).build());
                 ((Firework) firework).setFireworkMeta(meta);
-                firework.teleport(SpigotUtil.getRandomLocation(victor, 10, 4, false));
+
                 d++;
             }
         }.runTaskTimer(Minigame.getInstance(), 0, 20);

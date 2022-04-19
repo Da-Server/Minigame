@@ -1,7 +1,9 @@
 package minigame.minigame.bukkit.item;
 
+import lombok.Getter;
 import minigame.minigame.common.util.Color;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -19,6 +21,8 @@ public class ItemManager {
 
     private static final HashMap<CItem, ItemStack> itemMap = new HashMap<>();
     private static final HashMap<String, CItem> idMap = new HashMap<>();
+    @Getter
+    private static final HashMap<ItemStack, Integer> purchasable = new HashMap <>();
 
 
     /**
@@ -74,10 +78,22 @@ public class ItemManager {
 
         itemMap.put(item, i);
         idMap.put(ChatColor.stripColor(item.getName()).replace(" ", "_"), item);
+        if(item.isPurchasable()) {
+            purchasable.put(i, item.getCost());
+        }
 
 
 
         return i;
+    }
+
+
+    public static ItemStack buildItem(String name, Material type, boolean glow) {
+        ItemStack item = new ItemStack(type);
+        ItemMeta m = item.getItemMeta();
+        m.setDisplayName(Color.colorize(name));
+        if(glow) m.addEnchant(Enchantment.LURE, 1000, true); m.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        return item;
     }
 
     /**
@@ -94,6 +110,14 @@ public class ItemManager {
      */
     public static HashMap <String, CItem> getIdMap() {
         return idMap;
+    }
+
+    public static boolean isPurchasable(ItemStack i) {
+        return purchasable.containsKey(i);
+    }
+
+    public static ItemStack getItem(String id) {
+        return itemMap.get(idMap.get(id));
     }
 
 }

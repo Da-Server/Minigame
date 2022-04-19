@@ -10,6 +10,7 @@ commands:
     permission: "minigame.forcend"
   ci:
     permission: "minigame.customitem"
+  openshop:
 
 permissions:
   minigame.forcestart:

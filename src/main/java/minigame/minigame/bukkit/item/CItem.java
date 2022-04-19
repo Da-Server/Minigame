@@ -56,4 +56,16 @@ public abstract class CItem {
      * @return returns the ItemType
      */
     public abstract ItemType getItemType();
+
+    /**
+     * gets if the item is purchasable
+     * @return returns the item is purchasable
+     */
+    public abstract boolean isPurchasable();
+
+    /**
+     * gets the items cost
+     * @return returns the item's cost
+     */
+    public abstract Integer getCost();
 }

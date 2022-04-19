@@ -48,4 +48,14 @@ public class SteelDagger extends CItem {
     public ItemType getItemType() {
         return ItemType.WEAPON;
     }
+
+    @Override
+    public boolean isPurchasable() {
+        return true;
+    }
+
+    @Override
+    public Integer getCost() {
+        return 3;
+    }
 }

@@ -49,4 +49,14 @@ public class ExampleItem extends CItem {
     public ItemType getItemType() {
         return ItemType.MAGICAL;
     }
+
+    @Override
+    public boolean isPurchasable() {
+        return false;
+    }
+
+    @Override
+    public Integer getCost() {
+        return null;
+    }
 }

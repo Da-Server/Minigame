@@ -1,4 +1,4 @@
-package minigame.minigame.common.util;
+package minigame.minigame.common.util.org.spigot;
 
 import net.minecraft.server.v1_8_R3.IChatBaseComponent;
 import net.minecraft.server.v1_8_R3.PacketPlayOutTitle;
