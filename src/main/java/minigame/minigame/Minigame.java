@@ -57,6 +57,7 @@ public final class Minigame extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        
     }
 
     /**

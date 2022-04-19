@@ -1,6 +1,7 @@
 package minigame.minigame.bukkit.commands;
 import minigame.minigame.bukkit.configs.Config;
 import minigame.minigame.bukkit.game.Game;
+import minigame.minigame.bukkit.game.custom.core.GameStartEvent;
 import minigame.minigame.common.commands.PermissionManager;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -18,7 +19,7 @@ public class ForceStart implements CommandExecutor {
             Player p = (Player)commandSender;
             if(p.isOp() || p.hasPermission(PermissionManager.FORCE_START)) {
                 if(!Game.isRunning()) {
-                    Game.onStart();
+                    Bukkit.getPluginManager().callEvent(new GameStartEvent(true));
                     Bukkit.broadcastMessage(Config.FORCE_START_MESSAGE);
                 } else {
                     p.sendMessage(Config.RUNNING_MESSAGE);
