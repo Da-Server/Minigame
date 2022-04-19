@@ -1,9 +1,12 @@
 package minigame.minigame.bukkit.game.custom.core;
 
-import minigame.minigame.bukkit.game.Game;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
+
+/**
+ * A game custom event called when the game ends
+ */
 public class GameEndEvent extends Event {
 
     private static final HandlerList handlerList = new HandlerList();

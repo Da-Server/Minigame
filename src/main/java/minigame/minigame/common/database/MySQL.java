@@ -1,7 +1,7 @@
 package minigame.minigame.common.database;
 
 import lombok.SneakyThrows;
-import minigame.minigame.bukkit.configs.MySQLConfig;
+import minigame.minigame.bukkit.configs.impl.mysql.MySQLConfig;
 
 import java.sql.*;
 
@@ -41,10 +41,10 @@ public class MySQL {
 
     /**
      * Connects to the specified DataBase
-     * @see minigame.minigame.bukkit.configs.MySQLConfig for the config
+     * @see MySQLConfig for the config
      */
     private void connect() throws SQLException {
-        this.connection = DriverManager.getConnection(MySQLConfig.DB_HOST, MySQLConfig.DB_USER, MySQLConfig.DB_PASSWORD);
+        this.connection = DriverManager.getConnection(MySQLConfig.get().getData().getDbHost(), MySQLConfig.get().getData().getDbUser(), MySQLConfig.get().getData().getDbPassword());
         this.statement = connection.createStatement();
     }
 

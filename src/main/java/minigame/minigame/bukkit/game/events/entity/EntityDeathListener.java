@@ -1,15 +1,13 @@
 package minigame.minigame.bukkit.game.events.entity;
 
 import minigame.minigame.Minigame;
-import minigame.minigame.bukkit.configs.Config;
+import minigame.minigame.bukkit.configs.impl.chat.placeholders.ChatPlaceHoldersConfig;
 import minigame.minigame.bukkit.game.Game;
 import minigame.minigame.common.players.PlayerManager;
 import minigame.minigame.common.points.PlayerStats;
 import minigame.minigame.common.util.formatting.Placeholder;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -34,7 +32,7 @@ public class EntityDeathListener implements Listener {
             Player killer = player.getKiller();
 
             if(player.getKiller() != null) {
-                playerEvent.setDeathMessage(Placeholder.placeholder(player, killer, Config.PLAYER_DEATH_MESSAGE));
+                playerEvent.setDeathMessage(Placeholder.placeholder(player, killer, ChatPlaceHoldersConfig.get().getData().getPlayerDeathMessage()));
                 if(Game.isRunning()) {
                     PlayerStats stats = Minigame.getInstance().getPlayerManager().getPlayerStats(player);
                     PlayerManager manager = Minigame.getInstance().getPlayerManager();
