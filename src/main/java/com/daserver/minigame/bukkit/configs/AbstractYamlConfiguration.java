@@ -2,6 +2,7 @@ package com.daserver.minigame.bukkit.configs;
 
 import lombok.SneakyThrows;
 import com.daserver.minigame.bukkit.configs.exceptions.InvalidFileExtensionException;
+import org.apache.commons.io.FilenameUtils;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 
@@ -54,7 +55,7 @@ public abstract class AbstractYamlConfiguration<DataType extends ConfigurationSe
      * @param data The data
      */
     public void setData(DataType data) {
-        configurationInstance.set(parentKey, data.serialize());
+        configurationInstance.set(parentKey, data);
         save();
     }
 
@@ -78,9 +79,7 @@ public abstract class AbstractYamlConfiguration<DataType extends ConfigurationSe
      * @return true if it extends yaml, false otherwise
      */
     private boolean isExtendingYamlExtension(File file) {
-        String name = file.getName();
-        int i = name.lastIndexOf('.');
-        String extension = i > 0 ? name.substring(i + 1) : "";
-        return extension.equalsIgnoreCase(".yml") || extension.equalsIgnoreCase(".yaml");
+        String extension = FilenameUtils.getExtension(file.getName());
+        return extension.equalsIgnoreCase("yml") || extension.equalsIgnoreCase("yaml");
     }
 }
