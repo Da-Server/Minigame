@@ -80,6 +80,6 @@ public abstract class AbstractYamlConfiguration<DataType extends ConfigurationSe
      */
     private boolean isExtendingYamlExtension(File file) {
         String extension = FilenameUtils.getExtension(file.getName());
-        return extension.equalsIgnoreCase(".yml") || extension.equalsIgnoreCase(".yaml");
+        return extension.equalsIgnoreCase("yml") || extension.equalsIgnoreCase("yaml");
     }
 }
