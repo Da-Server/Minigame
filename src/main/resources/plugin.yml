@@ -1,6 +1,6 @@
 name: Minigame
 version: '${project.version}'
-main: com.daserver.minigame.Minigame
+main: minigame.minigame.Minigame
 authors: [ Wyvern ]
 commands:
   forcestart:
