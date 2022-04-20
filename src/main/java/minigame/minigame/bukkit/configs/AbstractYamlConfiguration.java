@@ -55,7 +55,7 @@ public abstract class AbstractYamlConfiguration<DataType extends ConfigurationSe
      * @param data The data
      */
     public void setData(DataType data) {
-        configurationInstance.set(parentKey, data.serialize());
+        configurationInstance.set(parentKey, data);
         save();
     }
 
