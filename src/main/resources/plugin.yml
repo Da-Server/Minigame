@@ -1,6 +1,6 @@
 name: Minigame
 version: '${project.version}'
-main: minigame.minigame.Minigame
+main: com.daserver.minigame.Minigame
 authors: [ Wyvern ]
 depend: [ProtocolLib]
 commands:
