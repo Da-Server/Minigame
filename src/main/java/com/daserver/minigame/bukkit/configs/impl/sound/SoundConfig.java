@@ -4,6 +4,7 @@ import com.daserver.minigame.Minigame;
 import com.daserver.minigame.bukkit.configs.AbstractYamlConfiguration;
 import com.daserver.minigame.bukkit.configs.exceptions.InvalidFileExtensionException;
 import com.daserver.minigame.bukkit.game.Game;
+import org.bukkit.Sound;
 
 import java.io.File;
 
@@ -18,6 +19,7 @@ public class SoundConfig extends AbstractYamlConfiguration<SoundConfigData> {
     private SoundConfig() throws InvalidFileExtensionException {
         super(new File(Minigame.getInstance().getDataFolder(), "soundsConfig.yml"));
     }
+
 
     public static SoundConfig get() {
         if (instance == null) {

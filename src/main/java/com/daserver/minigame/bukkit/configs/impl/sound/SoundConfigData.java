@@ -14,19 +14,59 @@ import java.util.Map;
  * @see SoundConfig
  * @see AbstractYamlConfiguration
  */
-@Getter
-@Setter
 public class SoundConfigData implements ConfigurationSerializable {
 
-    private Sound joinSound, countSound, startSound, guiClickSound, errorSound;
+    private String joinSound, countSound, startSound, guiClickSound, errorSound;
 
     protected SoundConfigData() {
         // defaults
-        this.joinSound = Sound.CHICKEN_EGG_POP;
-        this.countSound = Sound.NOTE_STICKS;
-        this.startSound = Sound.NOTE_PLING;
-        this.guiClickSound = Sound.NOTE_PLING;
-        this.errorSound = Sound.ENDERMAN_TELEPORT;
+        this.joinSound = Sound.CHICKEN_EGG_POP.name();
+        this.countSound = Sound.NOTE_STICKS.name();
+        this.startSound = Sound.NOTE_PLING.name();
+        this.guiClickSound = Sound.NOTE_PLING.name();
+        this.errorSound = Sound.ENDERMAN_TELEPORT.name();
+    }
+
+    /**
+     * Parses Sound from a string
+     * @param name string value
+     * @return Sound from string
+     */
+    private Sound parse(String name) {
+        return Sound.valueOf(name);
+    }
+
+
+    public Sound getCountSound() {
+        return parse(countSound);
+    }
+    public Sound getErrorSound() {
+        return parse(errorSound);
+    }
+    public Sound getGuiClickSound() {
+        return parse(guiClickSound);
+    }
+    public Sound getJoinSound() {
+        return parse(joinSound);
+    }
+    public Sound getStartSound() {
+        return parse(startSound);
+    }
+
+    public void setCountSound(Sound countSound) {
+        this.countSound = countSound.name();
+    }
+    public void setErrorSound(Sound errorSound) {
+        this.errorSound = errorSound.name();
+    }
+    public void setGuiClickSound(Sound guiClickSound) {
+        this.guiClickSound = guiClickSound.name();
+    }
+    public void setJoinSound(Sound joinSound) {
+        this.joinSound = joinSound.name();
+    }
+    public void setStartSound(Sound startSound) {
+        this.startSound = startSound.name();
     }
 
     @Override
